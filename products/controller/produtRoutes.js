@@ -1,7 +1,7 @@
 var express = require("express");
 const router = express.Router();
 const app = express();
-
+const mongoose = require('mongoose')
 const Product = require("../model/Product");
 
 const bodyParser = require('body-parser')
@@ -91,7 +91,9 @@ router.post('/',(req,res)=>{
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price
+        price: req.body.price,
+        category:req.body.category,
+        productImage:req.body.productImage
       });
       product
         .save()
@@ -185,4 +187,30 @@ router.post('/uploadImage',upload.single("productImage"),(req,res)=>{
       });
 })
 
+// router.patch('/uploadImage/:id',(req,res)=>{
+//   const id = req.params.id;
+//   const updateProd = {};
+//   for (const ops of req.body) {
+//       updateProd[ops.propName] = ops.value;
+//   }
+//   Product.update({ _id: id }, { $set: updateProd })
+//     .exec()
+//     .then(result => {
+//       res.status(200).json(result);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// })
+router.post("/search",(req, res) => {
+  const category = req.body.category;
+  
+  Product.find({ category:category })
+    .exec()
+    .then((products) => res.status(200).json(products))
+    .catch((err) => res.status(500).json("Error: " + err));
+});
 module.exports=router

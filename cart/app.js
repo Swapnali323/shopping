@@ -14,11 +14,11 @@ const cors = require('cors')
 app.use(cors())
 
 //auth
-const auth = require("./middleware/auth")
+// const auth = require("./middleware/auth")
 
-const productRoute = require("./controller/produtRoutes");
+const cartRoutes = require("./controller/cartRoutes");
 
-app.use('/products',productRoute)
+app.use('/carts',cartRoutes)
 
 //mongoose database connection
 mongoose.connect('mongodb+srv://User:users@cluster0.msztp.mongodb.net/shopping?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true }

@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const User = require('../models/User');
+const User = require('../model/User');
 
 
 app.post('/',(req, res) => {

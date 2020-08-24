@@ -2,31 +2,37 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  name:{
+      type:String,
+      required: true
+  },
   email: {
     type: String,
-    required: true,
+ 
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
   },
-  name: {
-    type: String,
-    maxlength: 50
-},
 password: {
     type: String,
-    minglength: 5
+    minlength: 5
 },
-lastname: {
-    type: String,
-    maxlength: 50
+address:{
+    type:String,
+    required: true
+},
+mobileNo:{
+    type: Number,
+    required: true
 },
 role: {
-    type: String,
-    default: 0
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"Role"
 },
-cart: {
-    type: Array,
-    default: []
-},
+cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cart",
+    },
+  ],
 history: {
     type: Array,
     default: []

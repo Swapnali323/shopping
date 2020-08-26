@@ -49,7 +49,7 @@ router.post("/signup", (req, res) => {
                 name:req.body.name,
                 email: req.body.email,
                 password: hash,
-                role:req.body.role,
+                // role:req.body.role,
                 address:req.body.address,
                 mobileNo:req.body.mobileNo
               });
@@ -178,7 +178,7 @@ router.post("/signup", (req, res) => {
                
                 email: user[0].email,
                 userId: user[0]._id,
-                role:user[0].role
+                // role:user[0].role
               // password:user[0].password            
               },
               "secret",
